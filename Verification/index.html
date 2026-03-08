@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Verification Infrastructure - AutoJasper-FPV</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Verification Infrastructure";
+        var mkdocs_page_input_path = "Verification.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> AutoJasper-FPV
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Installation/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Overview/">System Overview</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Verification Infrastructure</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#1-formal-wrapper-modules">1. Formal Wrapper Modules</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generated-file">Generated File</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#wrapper-contents">Wrapper Contents</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verification-reuse">Verification Reuse</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-structure">Example Structure</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#2-property-macro-definitions">2. Property Macro Definitions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose_1">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generated-file_1">Generated File</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#defined-macros">Defined Macros</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#the-reuse-macro-compositional-verification">The REUSE Macro — Compositional Verification</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#benefits">Benefits</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#3-makefile">3. Makefile</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose_2">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generated-file_2">Generated File</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#structure">Structure</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#integration">Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#4-file-list-analyzeflist">4. File List (analyze.flist)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose_3">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generated-file_3">Generated File</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#contents">Contents</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example">Example</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#jaspergold-integration">JasperGold Integration</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#5-tcl-script-jg_fpvtcl">5. TCL Script (jg_fpv.tcl)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#purpose_4">Purpose</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generated-file_4">Generated File</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration-elements">Configuration Elements</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-tcl-flow">Example TCL Flow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#verification-flow">Verification Flow</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#directory-structure">Directory Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#workflow-integration">Workflow Integration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#local-development">Local Development</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#automated-cicd">Automated CI/CD</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AutoJasper-FPV</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Verification Infrastructure</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="generated-verification-infrastructure">Generated Verification Infrastructure</h1>
+<p>AutoJasper-FPV automatically generates a complete, production-ready formal verification environment for Cadence JasperGold. This section details each artifact created and explains its role within the overall verification framework.</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>When processing one or multiple RTL files (<code>.sv</code> or <code>.v</code>), AutoJasper-FPV creates the following artifacts:</p>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Purpose</th>
+<th>Used By</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Formal Wrapper Modules</strong></td>
+<td>Enable block and top-level verification</td>
+<td>JasperGold elaboration</td>
+</tr>
+<tr>
+<td><strong>Property Macro Definitions</strong></td>
+<td>Standardized SVA authoring conventions</td>
+<td>Property files</td>
+</tr>
+<tr>
+<td><strong>Makefile</strong></td>
+<td>Orchestrate verification flows</td>
+<td>Build system</td>
+</tr>
+<tr>
+<td><strong>File List (analyze.flist)</strong></td>
+<td>Specify files and compilation options</td>
+<td>JasperGold analysis</td>
+</tr>
+<tr>
+<td><strong>TCL Script (jg_fpv.tcl)</strong></td>
+<td>Configure and execute JasperGold</td>
+<td>JasperGold runtime</td>
+</tr>
+</tbody>
+</table>
+<p>All artifacts are generated in a well-organized directory structure, maintaining consistency and enabling scalability across hierarchical verification efforts.</p>
+<hr />
+<h2 id="1-formal-wrapper-modules">1. Formal Wrapper Modules</h2>
+<h3 id="purpose">Purpose</h3>
+<p>Formal wrapper modules are the foundation of the verification infrastructure. They enable verification at multiple hierarchical levels without modifying the original RTL design.</p>
+<h3 id="generated-file">Generated File</h3>
+<p>For each RTL module, AutoJasper-FPV creates:</p>
+<pre><code>fv_&lt;module_name&gt;.sv
+</code></pre>
+<h3 id="wrapper-contents">Wrapper Contents</h3>
+<p>Each formal wrapper includes:</p>
+<ul>
+<li><strong>Port Mirroring</strong> — All ports from the original module are replicated to ensure complete interface capture</li>
+<li><strong>Parameter Propagation</strong> — Generic and parameter declarations are preserved, enabling parameterized verification</li>
+<li><strong>Conditional TOP Define Handling</strong> — Automatic detection of <code>*_TOP</code> defines to enable top-level and block-level verification modes</li>
+<li><strong>Assumption/Assumption Management (ASM) Configuration</strong> — Enables or disables assumptions based on verification context</li>
+<li><strong>Bind Statement Instantiation</strong> — Allows properties to be bound to the module without RTL modifications</li>
+</ul>
+<h3 id="verification-reuse">Verification Reuse</h3>
+<p>This design pattern enables:</p>
+<ul>
+<li><strong>Block-level verification</strong> — Verify individual modules in isolation with assumptions on inputs</li>
+<li><strong>Top-level verification</strong> — Convert assumptions to assertions when verifying the complete system</li>
+<li><strong>Compositional verification</strong> — Reuse properties across different hierarchical levels</li>
+</ul>
+<h3 id="example-structure">Example Structure</h3>
+<pre><code class="language-systemverilog">module fv_adder (
+  input  logic [7:0] a, b,
+  input  logic       clk, rst_n,
+  output logic [8:0] sum
+);
+
+  // Bind properties to parent module
+  bind adder adder_properties i_props(.*);
+
+endmodule
+</code></pre>
+<hr />
+<h2 id="2-property-macro-definitions">2. Property Macro Definitions</h2>
+<h3 id="purpose_1">Purpose</h3>
+<p>Property macros provide standardized conventions for assertion, assumption, and coverage authoring, promoting consistency and maintainability across large property suites.</p>
+<h3 id="generated-file_1">Generated File</h3>
+<pre><code>property_defines.svh
+</code></pre>
+<h3 id="defined-macros">Defined Macros</h3>
+<table>
+<thead>
+<tr>
+<th>Macro</th>
+<th>Purpose</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>AST</strong></td>
+<td>Assertion property — Always true during verification</td>
+<td><code>AST(valid_output)</code></td>
+</tr>
+<tr>
+<td><strong>ASM</strong></td>
+<td>Assumption property — Constrains input space</td>
+<td><code>ASM(input_valid)</code></td>
+</tr>
+<tr>
+<td><strong>COV</strong></td>
+<td>Coverage property — Tracks verification progress</td>
+<td><code>COV(reset_occurred)</code></td>
+</tr>
+<tr>
+<td><strong>REUSE</strong></td>
+<td>Context-aware property reuse — Switches semantics</td>
+<td><code>REUSE(constraint, assumption)</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-reuse-macro-compositional-verification">The REUSE Macro — Compositional Verification</h3>
+<p>The REUSE macro is a powerful mechanism for compositional verification. It enables a single property specification to adapt based on verification context:</p>
+<ul>
+<li><strong>At block level</strong> — Acts as an <strong>assumption</strong>, constraining the input space</li>
+<li><strong>At top level</strong> — Acts as an <strong>assertion</strong>, verifying the property holds end-to-end</li>
+</ul>
+<p>This eliminates property duplication and maintains a single source of truth:</p>
+<pre><code class="language-systemverilog">// Define once, use at multiple levels
+`REUSE_PROP(input_valid, assumption)  // Block-level
+`REUSE_PROP(input_valid, assertion)   // Top-level
+</code></pre>
+<h3 id="benefits">Benefits</h3>
+<ul>
+<li><strong>Reduced redundancy</strong> — Avoid duplicate property specifications</li>
+<li><strong>Consistency</strong> — Ensures block-level assumptions are verified at the top level</li>
+<li><strong>Maintainability</strong> — Single definition is easier to update and track</li>
+<li><strong>Scalability</strong> — Enables hierarchical verification strategies</li>
+</ul>
+<hr />
+<h2 id="3-makefile">3. Makefile</h2>
+<h3 id="purpose_2">Purpose</h3>
+<p>The generated Makefile provides a simple, consistent interface for invoking formal verification runs across all modules.</p>
+<h3 id="generated-file_2">Generated File</h3>
+<pre><code>Makefile
+</code></pre>
+<h3 id="structure">Structure</h3>
+<p>A Makefile target is created for each RTL module in the design:</p>
+<pre><code class="language-makefile">&lt;module_name&gt;_top:
+    jg jg_fpv.tcl -allow_unsupported_OS -define &lt;MODULE_NAME&gt;_TOP 1&amp;
+</code></pre>
+<h3 id="usage">Usage</h3>
+<p>Run formal verification on a specific module:</p>
+<pre><code class="language-bash">make &lt;module_name&gt;_top
+</code></pre>
+<p><strong>Example:</strong></p>
+<p>If your design contains modules <code>adder</code>, <code>multiplier</code>, and <code>alu</code>:</p>
+<pre><code class="language-bash">make adder_top        # Verify adder module
+make multiplier_top   # Verify multiplier module
+make alu_top          # Verify ALU module
+</code></pre>
+<h3 id="integration">Integration</h3>
+<p>The Makefile integrates seamlessly with:</p>
+<ul>
+<li><strong>CI/CD pipelines</strong> — Automated nightly formal runs</li>
+<li><strong>Development workflows</strong> — Quick module-level verification during design</li>
+<li><strong>Build systems</strong> — Part of larger design verification schedules</li>
+</ul>
+<hr />
+<h2 id="4-file-list-analyzeflist">4. File List (analyze.flist)</h2>
+<h3 id="purpose_3">Purpose</h3>
+<p>The filelist specifies all files, include paths, and macro definitions required by JasperGold for RTL analysis and compilation.</p>
+<h3 id="generated-file_3">Generated File</h3>
+<pre><code>analyze.flist
+</code></pre>
+<h3 id="contents">Contents</h3>
+<p>The generated filelist includes:</p>
+<table>
+<thead>
+<tr>
+<th>Entry</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Include Directories</strong></td>
+<td><code>+incdir+.</code> — Paths for <code>include</code> statements in RTL</td>
+</tr>
+<tr>
+<td><strong>Macro Definitions</strong></td>
+<td>Top-level defines for conditional compilation</td>
+</tr>
+<tr>
+<td><strong>RTL Design Files</strong></td>
+<td>All <code>.sv</code> and <code>.v</code> files being analyzed</td>
+</tr>
+<tr>
+<td><strong>Generated Formal Wrappers</strong></td>
+<td><code>fv_*.sv</code> files for verification binding</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example">Example</h3>
+<pre><code>+incdir+./rtl
++incdir+./inc
+
+// Macro definitions
++define+FORMAL
+
+// RTL files
+./rtl/adder.sv
+./rtl/multiplier.sv
+
+// Formal wrappers
+./formal/fv_adder.sv
+./formal/fv_multiplier.sv
+</code></pre>
+<h3 id="jaspergold-integration">JasperGold Integration</h3>
+<p>JasperGold uses this filelist during the analysis phase:</p>
+<pre><code class="language-bash">jg jg_fpv.tcl -flist analyze.flist
+</code></pre>
+<hr />
+<h2 id="5-tcl-script-jg_fpvtcl">5. TCL Script (jg_fpv.tcl)</h2>
+<h3 id="purpose_4">Purpose</h3>
+<p>The TCL script encapsulates the complete JasperGold formal verification flow, including setup, elaboration, and proof configuration.</p>
+<h3 id="generated-file_4">Generated File</h3>
+<pre><code>jg_fpv.tcl
+</code></pre>
+<h3 id="configuration-elements">Configuration Elements</h3>
+<p>The generated TCL script automatically configures:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>SystemVerilog Analysis</strong></td>
+<td><code>-sv12</code> option for SystemVerilog 2012 support</td>
+</tr>
+<tr>
+<td><strong>Dynamic Top Module Selection</strong></td>
+<td>Uses <code>*_TOP</code> defines to select verification target</td>
+</tr>
+<tr>
+<td><strong>Elaboration Constraints</strong></td>
+<td>Library path and elaboration settings</td>
+</tr>
+<tr>
+<td><strong>Clock &amp; Reset Specification</strong></td>
+<td>Automatic clock and reset signal detection</td>
+</tr>
+<tr>
+<td><strong>Proof Configuration</strong></td>
+<td><code>prove -all</code> for comprehensive formal verification</td>
+</tr>
+<tr>
+<td><strong>Result Output</strong></td>
+<td>Generates proof reports and coverage data</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-tcl-flow">Example TCL Flow</h3>
+<pre><code class="language-tcl">// Analyze RTL and formal wrappers
+analyze -flist analyze.flist
+
+// Elaborate based on TOP define
+elaborate -top &lt;module_name&gt; -define &lt;MODULE_NAME&gt;_TOP 1
+
+// Set clock and reset
+clock clk
+reset ~rst_n
+
+// Prove all properties
+prove -all
+
+// Generate reports
+report
+</code></pre>
+<h3 id="verification-flow">Verification Flow</h3>
+<p>The TCL script orchestrates the complete verification pipeline:</p>
+<ol>
+<li><strong>Analysis</strong> — Parse RTL and formal wrapper files</li>
+<li><strong>Elaboration</strong> — Build design hierarchy with selected top module</li>
+<li><strong>Setup</strong> — Configure timing and reset constraints</li>
+<li><strong>Proof</strong> — Verify all assertions, assumptions, and coverage</li>
+<li><strong>Reporting</strong> — Generate results and coverage metrics</li>
+</ol>
+<hr />
+<h2 id="directory-structure">Directory Structure</h2>
+<p>AutoJasper-FPV organizes generated artifacts as follows:</p>
+<pre><code>output_directory/
+├── fv_adder.sv
+├── fv_multiplier.sv
+├── analyze.flist
+├── jg_fpv.tcl
+└── Makefile
+</code></pre>
+<p>This flat structure (by default) keeps all verification artifacts together and accessible, making the generated environment easy to navigate and deploy.</p>
+<hr />
+<h2 id="workflow-integration">Workflow Integration</h2>
+<p>The generated verification infrastructure integrates seamlessly with existing development workflows:</p>
+<h3 id="local-development">Local Development</h3>
+<pre><code class="language-bash"># Generate framework
+python autojasper_fpv.py -d ./rtl -o ./formal
+
+# Verify specific module
+cd formal
+make adder_top
+
+# View results
+cat prove.out
+</code></pre>
+<h3 id="automated-cicd">Automated CI/CD</h3>
+<pre><code class="language-bash"># Generate in headless environment
+python autojasper_fpv.py -d ./rtl -o ./formal
+
+# Run all formal verifications
+cd formal
+make -k  # Continue even if one module fails
+
+# Collect and report results
+# (integrate with CI/CD dashboard)
+</code></pre>
+<hr />
+<h2 id="summary">Summary</h2>
+<p>The generated verification infrastructure provides a complete, ready-to-use formal verification environment that:</p>
+<p>✓ <strong>Eliminates manual setup</strong> — All artifacts are generated automatically<br />
+✓ <strong>Promotes consistency</strong> — Standardized macros and naming conventions<br />
+✓ <strong>Enables reuse</strong> — Properties scale across hierarchical levels<br />
+✓ <strong>Integrates easily</strong> — Works seamlessly with JasperGold and build systems<br />
+✓ <strong>Scales gracefully</strong> — Handles small modules to complex hierarchical designs  </p>
+<p>With these artifacts, verification teams can immediately focus on property authoring and coverage analysis rather than infrastructure setup.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Overview/" class="btn btn-neutral float-left" title="System Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Overview/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

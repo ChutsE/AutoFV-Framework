@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>System Overview - AutoJasper-FPV</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "System Overview";
+        var mkdocs_page_input_path = "Overview.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> AutoJasper-FPV
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Installation/">Installation</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">System Overview</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#execution-modes">Execution Modes</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#dual-mode-architecture">Dual-Mode Architecture</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#command-line-interface-cli">Command-Line Interface (CLI)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#recommended-for">Recommended for:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#cli-usage">CLI Usage</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#graphical-user-interface-gui">Graphical User Interface (GUI)</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#recommended-for_1">Recommended for:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gui-workflow">GUI Workflow</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#activating-gui-mode">Activating GUI Mode</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mode-selection-guide">Mode Selection Guide</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#generated-output">Generated Output</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Verification/">Verification Infrastructure</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AutoJasper-FPV</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">System Overview</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="system-overview">System Overview</h1>
+<p>AutoJasper-FPV is designed with flexibility at its core, supporting two distinct execution modes that cater to different workflows and environments. The tool automatically detects which mode to use based on the provided arguments, ensuring a seamless user experience across development and production settings.</p>
+<hr />
+<h2 id="execution-modes">Execution Modes</h2>
+<h3 id="dual-mode-architecture">Dual-Mode Architecture</h3>
+<p>AutoJasper-FPV intelligently switches between operating modes based on the input parameters:</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Mode</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File or directory <strong>AND</strong> output directory specified</td>
+<td><strong>CLI</strong></td>
+<td>Automation, CI/CD, batch processing</td>
+</tr>
+<tr>
+<td>No arguments or incomplete arguments</td>
+<td><strong>GUI</strong></td>
+<td>Interactive development, prototyping</td>
+</tr>
+</tbody>
+</table>
+<p>This design eliminates the need to maintain separate tool versions while maximizing usability across different deployment scenarios.</p>
+<hr />
+<h2 id="command-line-interface-cli">Command-Line Interface (CLI)</h2>
+<p>The CLI mode is optimized for automation and integration into existing workflows. It provides a non-interactive, scriptable interface suitable for continuous integration pipelines and headless environments.</p>
+<h3 id="recommended-for">Recommended for:</h3>
+<ul>
+<li><strong>Linux servers</strong> and headless systems</li>
+<li><strong>SSH sessions</strong> and remote execution</li>
+<li><strong>Continuous Integration (CI)</strong> pipelines</li>
+<li><strong>Automated formal flows</strong> and batch processing</li>
+<li><strong>Integration</strong> with makefiles and build systems</li>
+</ul>
+<h3 id="cli-usage">CLI Usage</h3>
+<p><strong>Single RTL file:</strong></p>
+<pre><code class="language-bash">python autojasper_fpv.py -f ./rtl/design.sv -o ./out
+</code></pre>
+<p><strong>Directory with all RTL files:</strong></p>
+<pre><code class="language-bash">python autojasper_fpv.py -d ./rtl -o ./out
+</code></pre>
+<p><strong>Recursive directory search:</strong></p>
+<pre><code class="language-bash">python autojasper_fpv.py -d ./rtl -o ./out -r
+</code></pre>
+<p>CLI mode activates only when both a file or directory AND an output directory are explicitly specified.</p>
+<hr />
+<h2 id="graphical-user-interface-gui">Graphical User Interface (GUI)</h2>
+<p>The GUI mode provides an intuitive, interactive interface for users who prefer visual feedback and step-by-step workflows. It is particularly useful for rapid prototyping and learning the tool's capabilities.</p>
+<h3 id="recommended-for_1">Recommended for:</h3>
+<ul>
+<li><strong>Local development</strong> environments on Windows/macOS/Linux</li>
+<li><strong>Rapid prototyping</strong> and experimentation</li>
+<li><strong>Interactive use</strong> without memorizing CLI arguments</li>
+<li><strong>Beginners</strong> exploring AutoJasper-FPV capabilities</li>
+</ul>
+<h3 id="gui-workflow">GUI Workflow</h3>
+<ol>
+<li><strong>Load RTL Files</strong> — Select one or more RTL files or an entire directory</li>
+<li><strong>Select Output Directory</strong> — Choose where to generate the formal verification framework</li>
+<li><strong>Configure Options</strong> — Set additional parameters (e.g., recursive search)</li>
+<li><strong>Generate Framework</strong> — Click to create all verification artifacts</li>
+</ol>
+<h3 id="activating-gui-mode">Activating GUI Mode</h3>
+<p>Simply run the tool without CLI arguments:</p>
+<pre><code class="language-bash">python autojasper_fpv.py
+</code></pre>
+<hr />
+<h2 id="mode-selection-guide">Mode Selection Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Recommended Mode</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Automated nightly formal run on Linux server</td>
+<td>CLI</td>
+<td>No interactive interface required; integrates easily with cron/scheduler</td>
+</tr>
+<tr>
+<td>First-time setup of formal project</td>
+<td>GUI</td>
+<td>Visual feedback helps users understand generated artifacts</td>
+</tr>
+<tr>
+<td>Integration into CI/CD pipeline</td>
+<td>CLI</td>
+<td>Enables fully automated, scriptable verification flows</td>
+</tr>
+<tr>
+<td>Quick local project generation</td>
+<td>GUI</td>
+<td>Faster than remembering CLI flags; provides immediate visual confirmation</td>
+</tr>
+<tr>
+<td>Docker container deployment</td>
+<td>CLI</td>
+<td>Headless execution without display server overhead</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="generated-output">Generated Output</h2>
+<p>Regardless of execution mode, AutoJasper-FPV generates identical artifacts designed to create a complete, production-ready Cadence JasperGold formal verification environment. These artifacts include:</p>
+<ul>
+<li><strong>Formal wrapper modules</strong> for block and top-level verification</li>
+<li><strong>Property macro definitions</strong> for standardized SVA conventions</li>
+<li><strong>Makefile</strong> with per-module targets</li>
+<li><strong>TCL script</strong> configured for JasperGold flow</li>
+<li><strong>Filelist</strong> for analysis and compilation</li>
+</ul>
+<p>The generated framework is immediately ready for formal verification runs without additional manual setup.</p>
+<p>```</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Installation/" class="btn btn-neutral float-left" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Verification/" class="btn btn-neutral float-right" title="Verification Infrastructure">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Verification/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
