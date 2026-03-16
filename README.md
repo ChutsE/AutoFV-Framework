@@ -1,4 +1,4 @@
-# AutoJasper-FPV  
+# AutoFV-Framework  
 ### An Automated Formal Verification Framework Generator for JasperGold  
 **Author:** Jesus Esparza-Soto  
 
@@ -6,7 +6,7 @@
 
 ## Abstract
 
-AutoJasper-FPV is a lightweight and automated framework generator designed to accelerate the setup of Formal Property Verification (FPV) environments for hardware designs written in Verilog/SystemVerilog. The tool parses RTL source files and automatically produces a reusable verification scaffold compatible with Cadence JasperGold. It supports both graphical (GUI) and command-line (CLI) execution modes, enabling seamless integration in local development environments and remote Linux servers. The framework emphasizes property reuse, modular verification, and standardized macro-based assertion management.
+AutoFV-Framework is a lightweight and automated framework generator designed to accelerate the setup of Formal Property Verification (FPV) environments for hardware designs written in Verilog/SystemVerilog. The tool parses RTL source files and automatically produces a reusable verification scaffold compatible with Cadence JasperGold. It supports both graphical (GUI) and command-line (CLI) execution modes, enabling seamless integration in local development environments and remote Linux servers. The framework emphasizes property reuse, modular verification, and standardized macro-based assertion management.
 
 ---
 
@@ -20,13 +20,13 @@ Formal verification has become a critical methodology for ensuring correctness i
 - TCL scripts for tool configuration  
 - Makefile targets for automation  
 
-AutoJasper-FPV addresses this gap by automatically generating a structured FPV environment from RTL inputs, reducing setup time while promoting consistency and reuse.
+AutoFV-Framework addresses this gap by automatically generating a structured FPV environment from RTL inputs, reducing setup time while promoting consistency and reuse.
 
 ---
 
 ## II. System Overview
 
-AutoJasper-FPV operates in two modes:
+AutoFV-Framework operates in two modes:
 
 ### 1. Command-Line Interface (CLI)
 
@@ -187,4 +187,4 @@ Workflow:
 
 ---
 
-AutoJasper-FPV enables scalable, reusable, and automated formal verification setup for JasperGold-based workflows.
+AutoFV-Framework enables scalable, reusable, and automated formal verification setup for JasperGold-based workflows.
