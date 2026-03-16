@@ -227,7 +227,8 @@ Workflow:
 2. Select output directory  
 3. Generate the verification framework  
 
-<img width="498" height="479" alt="image" src="https://github.com/user-attachments/assets/16801a13-fdc5-4cac-8677-440b921274c5" />
+
+<img width="499" height="478" alt="gui" src="https://github.com/user-attachments/assets/48696726-bb7e-4c83-9dca-77f8408a91de" />
 
 ---
 
