@@ -68,13 +68,7 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#available-macros">Available Macros</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ast-assertion">AST — Assertion</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#asm-assumption">ASM — Assumption</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cov-coverage">COV — Coverage</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#reuse-context-aware-property">REUSE — Context-Aware Property</a>
+    <li class="toctree-l2"><a class="reference internal" href="#role-contextdependent-property-role">ROLE — Context‑Dependent Property Role</a>
     </li>
     </ul>
                 </li>
@@ -115,7 +109,7 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="property-macros">Property Macros</h1>
-<p>AutoJasper-FPV defines a set of standardized macros for writing SystemVerilog Assertions.</p>
+<p>AutoFV defines standardized macros for SystemVerilog Assertions to simplify property authoring.</p>
 <hr />
 <h2 id="available-macros">Available Macros</h2>
 <table>
@@ -139,29 +133,19 @@
 <td>Coverage property</td>
 </tr>
 <tr>
-<td>REUSE</td>
-<td>Context-aware property reuse</td>
+<td>ROLE</td>
+<td>Context‑dependent property role</td>
 </tr>
 </tbody>
 </table>
 <hr />
-<h2 id="ast-assertion">AST — Assertion</h2>
-<pre><code>`AST(output_valid)
-</code></pre>
-<p>Ensures a property must always hold during verification.</p>
-<hr />
-<h2 id="asm-assumption">ASM — Assumption</h2>
-<pre><code>`ASM(input_valid)
-</code></pre>
-<p>Constrains input behavior.</p>
-<hr />
-<h2 id="cov-coverage">COV — Coverage</h2>
-<pre><code>`COV(reset_event)
-</code></pre>
-<p>Tracks verification coverage.</p>
-<hr />
-<h2 id="reuse-context-aware-property">REUSE — Context-Aware Property</h2>
-<p>The REUSE macro enables the same property to be used in different verification contexts.</p>
+<h2 id="role-contextdependent-property-role">ROLE — Context‑Dependent Property Role</h2>
+<p>The <code>ROLE</code> macro enables <strong>intent‑preserving property reuse across hierarchical verification levels</strong>.</p>
+<ul>
+<li><strong>Block‑level verification</strong> → property behaves as an <strong>assumption</strong></li>
+<li><strong>Top‑level verification</strong> → property becomes an <strong>assertion</strong></li>
+</ul>
+<p>This supports <strong>assume‑guarantee reasoning</strong> and avoids property duplication.</p>
               
             </div>
           </div><footer>

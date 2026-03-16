@@ -74,11 +74,11 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">FAQ</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#does-autojasper-fpv-require-jaspergold">Does AutoJasper-FPV require JasperGold?</a>
+    <li class="toctree-l2"><a class="reference internal" href="#does-autofv-require-jaspergold">Does AutoFV require JasperGold?</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#does-the-tool-modify-rtl">Does the tool modify RTL?</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#can-it-work-with-large-soc-designs">Can it work with large SoC designs?</a>
+    <li class="toctree-l2"><a class="reference internal" href="#can-it-scale-to-large-soc-designs">Can it scale to large SoC designs?</a>
     </li>
     </ul>
                 </li>
@@ -111,12 +111,12 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="faq">FAQ</h1>
-<h2 id="does-autojasper-fpv-require-jaspergold">Does AutoJasper-FPV require JasperGold?</h2>
-<p>No. JasperGold is only required to run the verification.</p>
+<h2 id="does-autofv-require-jaspergold">Does AutoFV require JasperGold?</h2>
+<p>No. The framework itself is tool‑agnostic. A formal verification engine is only required when running the verification flow.</p>
 <h2 id="does-the-tool-modify-rtl">Does the tool modify RTL?</h2>
-<p>No. Verification logic is inserted using SystemVerilog bind.</p>
-<h2 id="can-it-work-with-large-soc-designs">Can it work with large SoC designs?</h2>
-<p>Yes. The framework supports hierarchical verification.</p>
+<p>No. Verification logic is inserted using SystemVerilog <code>bind</code> constructs.</p>
+<h2 id="can-it-scale-to-large-soc-designs">Can it scale to large SoC designs?</h2>
+<p>Yes. The framework supports hierarchical and compositional verification.</p>
               
             </div>
           </div><footer>

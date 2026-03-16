@@ -60,17 +60,7 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#architecture-overview">Architecture Overview</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#core-modules">Core Modules</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#design-philosophy">Design Philosophy</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#automation">Automation</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#reusability">Reusability</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#scalability">Scalability</a>
-    </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#design-principles">Design Principles</a>
     </li>
     </ul>
                 </li>
@@ -118,8 +108,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="autojasper-fpv-architecture">AutoJasper-FPV Architecture</h1>
-<p>AutoJasper-FPV is composed of three major components:</p>
+                <h1 id="autofv-architecture">AutoFV Architecture</h1>
+<p>AutoFV Generator is composed of three major components:</p>
 <ol>
 <li>RTL Parser</li>
 <li>Framework Generator</li>
@@ -127,69 +117,10 @@
 </ol>
 <hr />
 <h2 id="architecture-overview">Architecture Overview</h2>
-<p>RTL Files
-   │
-   ▼
-RTL Parser
-   │
-   ▼
-Module Extraction
-   │
-   ▼
-Framework Generator
-   │
-   ├── Wrapper Generator
-   ├── Macro Generator
-   ├── Filelist Builder
-   ├── TCL Generator
-   └── Makefile Generator
-   │
-   ▼
-Formal Verification Environment</p>
+<p>RTL → Parser → Module Extraction → Framework Generator → Formal Verification Environment</p>
 <hr />
-<h2 id="core-modules">Core Modules</h2>
-<table>
-<thead>
-<tr>
-<th>Module</th>
-<th>Function</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>RTL parser</td>
-<td>Extract modules and ports</td>
-</tr>
-<tr>
-<td>Wrapper generator</td>
-<td>Create fv modules</td>
-</tr>
-<tr>
-<td>Macro generator</td>
-<td>Create property macros</td>
-</tr>
-<tr>
-<td>Filelist generator</td>
-<td>Build analyze.flist</td>
-</tr>
-<tr>
-<td>TCL generator</td>
-<td>Configure JasperGold</td>
-</tr>
-<tr>
-<td>Makefile generator</td>
-<td>Automate runs</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="design-philosophy">Design Philosophy</h2>
-<h3 id="automation">Automation</h3>
-<p>Minimize manual setup for formal verification environments.</p>
-<h3 id="reusability">Reusability</h3>
-<p>Properties can be reused across block-level and top-level verification.</p>
-<h3 id="scalability">Scalability</h3>
-<p>The framework can scale from small modules to full SoC verification.</p>
+<h2 id="design-principles">Design Principles</h2>
+<p>Automation, scalability, and property reuse across hierarchical verification contexts.</p>
               
             </div>
           </div><footer>

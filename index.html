@@ -42,17 +42,13 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#automated-formal-verification-framework-generator-for-cadence-jaspergold">Automated Formal Verification Framework Generator for Cadence JasperGold</a>
+    <li class="toctree-l2"><a class="reference internal" href="#automated-formal-verification-framework-generator">Automated Formal Verification Framework Generator</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
     </li>
     </ul>
                 </li>
@@ -116,59 +112,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="autojasper-fpv">AutoJasper-FPV</h1>
-<h2 id="automated-formal-verification-framework-generator-for-cadence-jaspergold">Automated Formal Verification Framework Generator for Cadence JasperGold</h2>
-<p>AutoJasper-FPV is an automated tool that generates a complete <strong>Formal Property Verification (FPV) framework</strong> from RTL sources written in Verilog or SystemVerilog.</p>
-<p>The tool scans RTL files and automatically produces a reusable verification infrastructure compatible with <strong>Cadence JasperGold</strong>, including wrappers, macros, filelists, TCL scripts, and Makefile automation.</p>
-<p>AutoJasper-FPV is designed to help <strong>new hardware engineers and researchers quickly adopt formal verification methodologies</strong> without manually building the entire infrastructure.</p>
+                <h1 id="autofv-generator">AutoFV Generator</h1>
+<h2 id="automated-formal-verification-framework-generator">Automated Formal Verification Framework Generator</h2>
+<p>AutoFV Generator is an automated tool that generates a complete <strong>Formal Property Verification (FPV) framework</strong> from RTL sources written in Verilog or SystemVerilog.</p>
+<p>The tool analyzes RTL files and automatically produces a reusable verification infrastructure including wrappers, property macros, filelists, TCL scripts, and Makefile automation. The generated framework can be used with industrial formal verification tools such as Cadence JasperGold and similar environments.</p>
+<p>AutoFV is designed to help <strong>new hardware engineers and researchers quickly adopt formal verification methodologies</strong> without manually constructing the entire verification infrastructure.</p>
 <hr />
 <h2 id="key-features">Key Features</h2>
 <ul>
 <li>Automated generation of formal verification environments</li>
-<li>Compatible with <strong>Cadence JasperGold</strong></li>
+<li>Compatible with industrial formal verification tools</li>
 <li>Supports <strong>Verilog and SystemVerilog RTL</strong></li>
 <li>Property reuse across hierarchical verification levels</li>
-<li>Standardized <strong>SVA macro conventions</strong></li>
+<li>Standardized <strong>SystemVerilog Assertion (SVA) macro conventions</strong></li>
 <li>Dual execution modes:</li>
 <li>GUI (interactive)</li>
 <li>CLI (automation / CI)</li>
 </ul>
 <hr />
 <h2 id="motivation">Motivation</h2>
-<p>Setting up a formal verification environment typically requires significant manual effort, including:</p>
+<p>Setting up a formal verification environment often requires significant manual effort, including:</p>
 <ul>
-<li>writing wrapper modules</li>
+<li>writing formal wrapper modules</li>
 <li>creating filelists</li>
 <li>configuring TCL scripts</li>
 <li>defining verification macros</li>
 <li>building Makefile automation</li>
 </ul>
-<p>AutoJasper-FPV eliminates this repetitive setup by generating a ready-to-run FPV framework directly from RTL sources.</p>
+<p>AutoFV Generator eliminates this repetitive setup by automatically generating a ready‑to‑use FPV framework directly from RTL sources.</p>
 <hr />
 <h2 id="quick-start">Quick Start</h2>
 <p>Generate a framework:</p>
-<pre><code>python autojasper_fpv.py -d ./rtl -o ./formal
-</code></pre>
-<p>Run JasperGold verification:</p>
-<pre><code>cd formal
-make &lt;module&gt;_top
-</code></pre>
-<hr />
-<h2 id="documentation">Documentation</h2>
-<ul>
-<li>Installation Guide</li>
-<li>System Overview</li>
-<li>Generated Verification Infrastructure</li>
-<li>Property Macros</li>
-<li>Examples</li>
-</ul>
-<hr />
-<h2 id="requirements">Requirements</h2>
-<ul>
-<li>Python ≥ 3.9</li>
-<li>Cadence JasperGold (only required for running verification)</li>
-<li>Tkinter (GUI mode)</li>
-</ul>
+<p>python autofv_generator.py -d ./rtl -o ./formal</p>
+<p>Run formal verification:</p>
+<p>cd formal
+make <module>_top</p>
               
             </div>
           </div><footer>
@@ -217,5 +195,5 @@ make &lt;module&gt;_top
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-03-16 06:29:51.196145+00:00
+Build Date UTC : 2026-03-16 21:15:36.898190+00:00
 -->

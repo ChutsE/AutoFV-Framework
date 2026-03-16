@@ -54,16 +54,6 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Quick Start</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#step-1-prepare-rtl">Step 1 — Prepare RTL</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-2-run-autojasper-fpv">Step 2 — Run AutoJasper-FPV</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-3-generated-files">Step 3 — Generated Files</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-4-run-jaspergold">Step 4 — Run JasperGold</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#step-5-verify-results">Step 5 — Verify Results</a>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -115,34 +105,21 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="quick-start">Quick Start</h1>
-<p>This guide demonstrates how to generate a formal verification framework in less than one minute.</p>
-<hr />
-<h2 id="step-1-prepare-rtl">Step 1 — Prepare RTL</h2>
-<p>Example RTL directory:</p>
+<ol>
+<li>Prepare RTL files</li>
+</ol>
 <p>rtl/
  ├── adder.sv
- ├── multiplier.sv
- └── alu.sv</p>
-<hr />
-<h2 id="step-2-run-autojasper-fpv">Step 2 — Run AutoJasper-FPV</h2>
-<pre><code>python autojasper_fpv.py -d ./rtl -o ./formal
-</code></pre>
-<hr />
-<h2 id="step-3-generated-files">Step 3 — Generated Files</h2>
-<p>formal/
- ├── fv_adder.sv
- ├── fv_multiplier.sv
- ├── analyze.flist
- ├── jg_fpv.tcl
- └── Makefile</p>
-<hr />
-<h2 id="step-4-run-jaspergold">Step 4 — Run JasperGold</h2>
-<pre><code>cd formal
-make adder_top
-</code></pre>
-<hr />
-<h2 id="step-5-verify-results">Step 5 — Verify Results</h2>
-<p>JasperGold will analyze the design and prove the generated properties.</p>
+ ├── multiplier.sv</p>
+<ol>
+<li>Run AutoFV</li>
+</ol>
+<p>python autofv_generator.py -d ./rtl -o ./formal</p>
+<ol>
+<li>Run verification</li>
+</ol>
+<p>cd formal
+make adder_top</p>
               
             </div>
           </div><footer>

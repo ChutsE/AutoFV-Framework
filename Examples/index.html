@@ -70,12 +70,6 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Examples</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#example-1-adder">Example 1 — Adder</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#generated-wrapper">Generated Wrapper</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#run-verification">Run Verification</a>
-    </li>
     </ul>
                 </li>
               </ul>
@@ -111,28 +105,16 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="examples">Examples</h1>
-<p>This section demonstrates how AutoJasper-FPV works with real designs.</p>
-<hr />
-<h2 id="example-1-adder">Example 1 — Adder</h2>
-<p>RTL:</p>
-<pre><code>module adder(
+<p>Example RTL:</p>
+<p>module adder(
  input logic [7:0] a,
  input logic [7:0] b,
  output logic [8:0] sum
-);
-
-assign sum = a + b;
-
-endmodule
-</code></pre>
-<hr />
-<h2 id="generated-wrapper">Generated Wrapper</h2>
-<pre><code>fv_adder.sv
-</code></pre>
-<hr />
-<h2 id="run-verification">Run Verification</h2>
-<pre><code>make adder_top
-</code></pre>
+);</p>
+<p>assign sum = a + b;</p>
+<p>endmodule</p>
+<p>Run verification:</p>
+<p>make adder_top</p>
               
             </div>
           </div><footer>
