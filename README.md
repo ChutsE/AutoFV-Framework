@@ -1,5 +1,5 @@
 # AutoFV-Framework  
-### An Automated Formal Verification Framework Generator for JasperGold  
+### An Automated Formal Verification Framework Generator
 **Author:** Jesus Esparza-Soto  
 
 ---
