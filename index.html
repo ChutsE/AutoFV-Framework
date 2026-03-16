@@ -42,13 +42,15 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#an-automated-formal-verification-framework-generator-for-jaspergold">An Automated Formal Verification Framework Generator for JasperGold</a>
+    <li class="toctree-l2"><a class="reference internal" href="#automated-formal-verification-framework-generator-for-cadence-jaspergold">Automated Formal Verification Framework Generator for Cadence JasperGold</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a>
+    <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a>
+    <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#contributions">Contributions</a>
+    <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#documentation">Documentation</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
     </li>
@@ -64,7 +66,31 @@
                 </li>
               </ul>
               <ul>
+                <li class="toctree-l1"><a class="reference internal" href="QuickStart/">Quick Start</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Architecture/">Architecture</a>
+                </li>
+              </ul>
+              <ul>
                 <li class="toctree-l1"><a class="reference internal" href="Verification/">Verification Infrastructure</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="PropertyMacros/">Property Macros</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Examples/">Examples</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="FAQ/">FAQ</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="Contributing/">Contributing</a>
                 </li>
               </ul>
       </div>
@@ -91,37 +117,57 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="autojasper-fpv">AutoJasper-FPV</h1>
-<h2 id="an-automated-formal-verification-framework-generator-for-jaspergold">An Automated Formal Verification Framework Generator for JasperGold</h2>
+<h2 id="automated-formal-verification-framework-generator-for-cadence-jaspergold">Automated Formal Verification Framework Generator for Cadence JasperGold</h2>
+<p>AutoJasper-FPV is an automated tool that generates a complete <strong>Formal Property Verification (FPV) framework</strong> from RTL sources written in Verilog or SystemVerilog.</p>
+<p>The tool scans RTL files and automatically produces a reusable verification infrastructure compatible with <strong>Cadence JasperGold</strong>, including wrappers, macros, filelists, TCL scripts, and Makefile automation.</p>
+<p>AutoJasper-FPV is designed to help <strong>new hardware engineers and researchers quickly adopt formal verification methodologies</strong> without manually building the entire infrastructure.</p>
 <hr />
-<h2 id="abstract">Abstract</h2>
-<p>AutoJasper-FPV is a lightweight and automated framework generator designed to accelerate the setup of Formal Property Verification (FPV) environments for hardware designs written in Verilog/SystemVerilog. The tool parses RTL source files and automatically produces a reusable verification scaffold compatible with Cadence JasperGold. It supports both graphical (GUI) and command-line (CLI) execution modes, enabling seamless integration in local development environments and remote Linux servers. The framework emphasizes property reuse, modular verification, and standardized macro-based assertion management.</p>
-<hr />
-<h2 id="introduction">Introduction</h2>
-<p>Formal verification has become a critical methodology for ensuring correctness in modern digital hardware systems. However, the initial setup of a formal verification environment—especially for modular or hierarchical designs—often requires repetitive boilerplate configuration, including:</p>
+<h2 id="key-features">Key Features</h2>
 <ul>
-<li>Formal wrapper modules  </li>
-<li>Property macro definitions  </li>
-<li>File lists (flists)  </li>
-<li>TCL scripts for tool configuration  </li>
-<li>Makefile targets for automation  </li>
+<li>Automated generation of formal verification environments</li>
+<li>Compatible with <strong>Cadence JasperGold</strong></li>
+<li>Supports <strong>Verilog and SystemVerilog RTL</strong></li>
+<li>Property reuse across hierarchical verification levels</li>
+<li>Standardized <strong>SVA macro conventions</strong></li>
+<li>Dual execution modes:</li>
+<li>GUI (interactive)</li>
+<li>CLI (automation / CI)</li>
 </ul>
-<p>AutoJasper-FPV addresses this gap by automatically generating a structured FPV environment from RTL inputs, reducing setup time while promoting consistency and reuse.</p>
 <hr />
-<h2 id="contributions">Contributions</h2>
-<p>The main contributions of this work are:</p>
+<h2 id="motivation">Motivation</h2>
+<p>Setting up a formal verification environment typically requires significant manual effort, including:</p>
 <ul>
-<li><strong>An automated environment generator for JasperGold</strong> that creates a complete, runnable formal project from an RTL directory, including Makefile orchestration, TCL run script, and analysis/compile filelists.</li>
-<li><strong>A standardized project structure</strong> for properties and constraints that promotes reproducibility, readability, and scalable growth of the formal testbench across modules and integration levels.</li>
-<li><strong>Non-intrusive instrumentation support</strong> via SystemVerilog <strong>bind</strong>, enabling verification logic reuse without RTL modifications.</li>
-<li><strong>Macros SVA conventions</strong> for uniform assertion/assumption/cover authoring and easier maintenance of large property suites.</li>
-<li><strong>"REUSE" mechanisms</strong> for specification across contexts (e.g., assertion vs. assumption) while keeping a single source without duplicating content.</li>
+<li>writing wrapper modules</li>
+<li>creating filelists</li>
+<li>configuring TCL scripts</li>
+<li>defining verification macros</li>
+<li>building Makefile automation</li>
+</ul>
+<p>AutoJasper-FPV eliminates this repetitive setup by generating a ready-to-run FPV framework directly from RTL sources.</p>
+<hr />
+<h2 id="quick-start">Quick Start</h2>
+<p>Generate a framework:</p>
+<pre><code>python autojasper_fpv.py -d ./rtl -o ./formal
+</code></pre>
+<p>Run JasperGold verification:</p>
+<pre><code>cd formal
+make &lt;module&gt;_top
+</code></pre>
+<hr />
+<h2 id="documentation">Documentation</h2>
+<ul>
+<li>Installation Guide</li>
+<li>System Overview</li>
+<li>Generated Verification Infrastructure</li>
+<li>Property Macros</li>
+<li>Examples</li>
 </ul>
 <hr />
 <h2 id="requirements">Requirements</h2>
 <ul>
-<li><strong>Python ≥ 3.9</strong></li>
-<li><strong>No third-party dependencies</strong> — relies exclusively on Python Standard Library modules</li>
-<li><strong>Tkinter</strong> (GUI mode only)</li>
+<li>Python ≥ 3.9</li>
+<li>Cadence JasperGold (only required for running verification)</li>
+<li>Tkinter (GUI mode)</li>
 </ul>
               
             </div>
@@ -171,5 +217,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-03-16 05:57:14.245505+00:00
+Build Date UTC : 2026-03-16 06:29:51.196145+00:00
 -->
