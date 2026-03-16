@@ -393,7 +393,7 @@ def window_main():
     from tkinter import filedialog, messagebox
 
     root = tk.Tk()
-    root.title("AutoJasper-FPV File Generator")
+    root.title("AutoFV Generator")
     root.geometry("500x450")
     
     storage = {}
@@ -481,7 +481,7 @@ def window_main():
             messagebox.showerror("Error", f"An error occurred: {str(e)}")
     
 
-    title_label = tk.Label(root, text="AutoJasper-FPV File Generator", font=("Arial", 14, "bold"))
+    title_label = tk.Label(root, text="AutoFV Generator", font=("Arial", 14, "bold"))
     title_label.pack(pady=10)
     
 
