@@ -58,7 +58,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#cov-coverage-property">COV — Coverage Property</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#reuse-contextdependent-property-role">REUSE — Context‑Dependent Property Role</a>
+    <li class="toctree-l2"><a class="reference internal" href="#role-contextdependent-property-role">ROLE — Context‑Dependent Property Role</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a>
         <ul>
@@ -68,7 +68,7 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#cov-example">COV Example</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#reuse-example">REUSE Example</a>
+    <li class="toctree-l3"><a class="reference internal" href="#role-example">ROLE Example</a>
     </li>
         </ul>
     </li>
@@ -139,7 +139,7 @@
 <td>Coverage property</td>
 </tr>
 <tr>
-<td>REUSE</td>
+<td>ROLE</td>
 <td><code>top</code>, <code>block</code>, <code>name</code>, <code>precond</code>, <code>consq</code></td>
 <td>Context‑dependent property role</td>
 </tr>
@@ -169,9 +169,9 @@
     block_ast_name: cover property (@(posedge clk) disable iff(!arst_n) precond consq);
 </code></pre>
 <hr />
-<h2 id="reuse-contextdependent-property-role">REUSE — Context‑Dependent Property Role</h2>
-<p>The <code>REUSE</code> macro enables <strong>intent‑preserving property reuse across hierarchical verification levels</strong>.</p>
-<pre><code class="language-systemverilog">`define REUSE(top=1'b0, block=no_name, name=no_name, precond=1'b1 |-&gt;, consq=1'b0) \
+<h2 id="role-contextdependent-property-role">ROLE — Context‑Dependent Property Role</h2>
+<p>The <code>ROLE</code> macro enables <strong>intent‑preserving property role across hierarchical verification levels</strong>.</p>
+<pre><code class="language-systemverilog">`define ROLE(top=1'b0, block=no_name, name=no_name, precond=1'b1 |-&gt;, consq=1'b0) \
     if(top==1'b1) begin \
         block_asm_name: assume property (@(posedge clk) disable iff(!arst_n) precond consq); \
     end else begin \
@@ -194,8 +194,8 @@
 <h3 id="cov-example">COV Example</h3>
 <pre><code class="language-systemverilog">`COV(rca, reset_triggered, (arst_n == 1'b0), (state == IDLE))
 </code></pre>
-<h3 id="reuse-example">REUSE Example</h3>
-<pre><code class="language-systemverilog">`REUSE(1'b0, rca, handshake, (req == 1'b1), (ack == 1'b1))
+<h3 id="role-example">ROLE Example</h3>
+<pre><code class="language-systemverilog">`ROLE(1'b0, rca, handshake, (req == 1'b1), (ack == 1'b1))
 </code></pre>
               
             </div>
