@@ -47,8 +47,12 @@
     <li class="toctree-l2"><a class="reference internal" href="#key-features">Key Features</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#generate-a-framework">Generate a framework</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#quick-start">Quick Start</a>
+    <li class="toctree-l3"><a class="reference internal" href="#run-formal-verification">Run formal verification</a>
+    </li>
+        </ul>
     </li>
     </ul>
                 </li>
@@ -141,15 +145,17 @@
 </ul>
 <p>AutoFV Generator eliminates this repetitive setup by automatically generating a ready‑to‑use FPV framework directly from RTL sources.</p>
 <hr />
-<h2 id="quick-start">Quick Start</h2>
-<p>Generate a framework:</p>
+<h3 id="generate-a-framework">Generate a framework</h3>
 <pre><code class="language-bash">python autofv.py -d ./rtl -o ./formal
 </code></pre>
-<p>Run formal verification:</p>
+<p><strong>Command-line arguments:</strong>
+- <code>-d, --directory</code>: Specifies the path to RTL source files. Accepts either a directory containing multiple RTL files or a single RTL file path for targeted verification.
+- <code>-o, --output</code>: Specifies the output directory where the generated FPV framework and all supporting files will be created.</p>
+<h3 id="run-formal-verification">Run formal verification</h3>
 <pre><code class="language-bash">cd formal
+make &lt;module&gt;_top
 </code></pre>
-<pre><code class="language-bash">make &lt;module&gt;_top
-</code></pre>
+<p>Navigate to the generated framework directory and execute the Makefile to start formal verification on the target module, replacing <code>&lt;module&gt;_top</code> with your desired module name.</p>
               
             </div>
           </div><footer>
@@ -198,5 +204,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2026-03-31 02:52:47.409980+00:00
+Build Date UTC : 2026-03-31 02:57:15.361186+00:00
 -->
