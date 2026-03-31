@@ -58,7 +58,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#cov-coverage-property">COV — Coverage Property</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#role-contextdependent-property-role">ROLE — Context‑Dependent Property Role</a>
+    <li class="toctree-l2"><a class="reference internal" href="#reuse-contextdependent-property-role">REUSE — Context‑Dependent Property Role</a>
     </li>
     </ul>
                 </li>
@@ -106,24 +106,29 @@
 <thead>
 <tr>
 <th>Macro</th>
+<th>Parameters</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>AST</td>
+<td><code>block</code>, <code>name</code>, <code>precond</code>, <code>consq</code></td>
 <td>Assertion property</td>
 </tr>
 <tr>
 <td>ASM</td>
+<td><code>block</code>, <code>name</code>, <code>precond</code>, <code>consq</code></td>
 <td>Assumption property</td>
 </tr>
 <tr>
 <td>COV</td>
+<td><code>block</code>, <code>name</code>, <code>precond</code>, <code>consq</code></td>
 <td>Coverage property</td>
 </tr>
 <tr>
-<td>ROLE</td>
+<td>REUSE</td>
+<td><code>top</code>, <code>block</code>, <code>name</code>, <code>precond</code>, <code>consq</code></td>
 <td>Context‑dependent property role</td>
 </tr>
 </tbody>
@@ -131,36 +136,39 @@
 <hr />
 <h2 id="ast-assertion-property">AST — Assertion Property</h2>
 <p>The <code>AST</code> macro defines a property that must always hold true in the design.</p>
-<pre><code class="language-systemverilog">AST_name: assert property (@(posedge clk) condition);
+<pre><code class="language-systemverilog">`define AST(block=rca, name=no_name, precond=1'b1 |-&gt;, consq=1'b0) \
+    block_ast_name: assert property (@(posedge clk) disable iff(!arst_n) precond consq);
 </code></pre>
-<ul>
-<li>Used for mandatory design requirements</li>
-<li>Violations indicate design failures</li>
-</ul>
+<p><strong>Parameters:</strong>
+- <code>block</code>: Module/block identifier
+- <code>name</code>: Property name
+- <code>precond</code>: Precondition (default: <code>1'b1</code>)
+- <code>consq</code>: Consequence (default: <code>1'b0</code>)</p>
 <hr />
 <h2 id="asm-assumption-property">ASM — Assumption Property</h2>
 <p>The <code>ASM</code> macro specifies assumptions about the environment or inputs.</p>
-<pre><code class="language-systemverilog">ASM_name: assume property (@(posedge clk) input_constraint);
+<pre><code class="language-systemverilog">`define ASM(block=rca, name=no_name, precond=1'b1 |-&gt;, consq=1'b0) \
+    block_ast_name: assume property (@(posedge clk) disable iff(!arst_n) precond consq);
 </code></pre>
-<ul>
-<li>Constrains the verification space</li>
-<li>Prevents unrealistic stimulus scenarios</li>
-</ul>
 <hr />
 <h2 id="cov-coverage-property">COV — Coverage Property</h2>
 <p>The <code>COV</code> macro tracks whether specific properties or scenarios occur during simulation.</p>
-<pre><code class="language-systemverilog">COV_name: cover property (@(posedge clk) scenario);
+<pre><code class="language-systemverilog">`define COV(block=rca, name=no_name, precond=1'b1 |-&gt;, consq=1'b0) \
+    block_ast_name: cover property (@(posedge clk) disable iff(!arst_n) precond consq);
+</code></pre>
+<hr />
+<h2 id="reuse-contextdependent-property-role">REUSE — Context‑Dependent Property Role</h2>
+<p>The <code>REUSE</code> macro enables <strong>intent‑preserving property reuse across hierarchical verification levels</strong>.</p>
+<pre><code class="language-systemverilog">`define REUSE(top=1'b0, block=no_name, name=no_name, precond=1'b1 |-&gt;, consq=1'b0) \
+    if(top==1'b1) begin \
+        block_asm_name: assume property (@(posedge clk) disable iff(!arst_n) precond consq); \
+    end else begin \
+        block_ast_name: assert property (@(posedge clk) disable iff(!arst_n) precond consq); \
+    end
 </code></pre>
 <ul>
-<li>Measures verification completeness</li>
-<li>Identifies untested design behaviors</li>
-</ul>
-<hr />
-<h2 id="role-contextdependent-property-role">ROLE — Context‑Dependent Property Role</h2>
-<p>The <code>ROLE</code> macro enables <strong>intent‑preserving property reuse across hierarchical verification levels</strong>.</p>
-<ul>
-<li><strong>Block‑level verification</strong> → property behaves as an <strong>assumption</strong></li>
-<li><strong>Top‑level verification</strong> → property becomes an <strong>assertion</strong></li>
+<li><strong>Top‑level verification</strong> (<code>top=1'b1</code>) → property behaves as an <strong>assumption</strong></li>
+<li><strong>Block‑level verification</strong> (<code>top=1'b0</code>) → property becomes an <strong>assertion</strong></li>
 </ul>
 <p>This supports <strong>assume‑guarantee reasoning</strong> and avoids property duplication.</p>
               
