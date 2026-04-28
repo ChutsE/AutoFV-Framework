@@ -7,10 +7,10 @@ After generating the framework, run formal verification from the generated outpu
 Move into the generated framework directory before running Makefile targets.
 
 ```bash
-cd ./out
+cd ./formal
 ```
 
-If you used another output path, replace `./out` with your selected output directory.
+If you used another output path, replace `./formal` with your selected output directory.
 
 ## Run Makefile commands
 

@@ -3,8 +3,31 @@ import re
 import logging
 import sys
 
-logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-logger = logging.getLogger(__name__)
+execution_path = os.getcwd()
+log_file_path = os.path.join(execution_path, "autofv.log")
+
+logger = logging.getLogger("autofv")
+logger.setLevel(logging.INFO)
+logger.handlers.clear()
+
+log_formatter = logging.Formatter("%(levelname)s:%(name)s: %(message)s")
+
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(log_formatter)
+
+file_handler = logging.FileHandler(log_file_path, encoding="utf-8")
+file_handler.setFormatter(log_formatter)
+
+logger.addHandler(console_handler)
+logger.propagate = False
+
+try:
+    logger.addHandler(file_handler)
+    logger.info(f"Execution directory: {execution_path}")
+    logger.info(f"Log file: {log_file_path}")
+except Exception as e:
+    logger.warning(f"Could not create log file {log_file_path}: {str(e)}")
+    logger.info(f"Execution directory: {execution_path}")
 
 def _read_file_content(filepath):
     """
