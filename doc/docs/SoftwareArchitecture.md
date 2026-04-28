@@ -13,19 +13,19 @@ Both modes share the same generation pipeline and produce the same set of output
 
 ## Main Components
 
-#### 1. Input handling
+##### 1. Input handling
 
 The script accepts either a single RTL file or a directory of RTL files. It filters files with `.v` and `.sv` extensions and loads their contents into memory.
 
-#### 2. Framework generation
+##### 2. Framework generation
 
 For each RTL source, AutoFV generates formal verification wrapper modules. These wrappers are built from the original module structure and are prepared for binding into the design.
 
-#### 3. Property macros
+##### 3. Property macros
 
 The script creates a shared header file with SystemVerilog macros for assertions, assumptions, coverage, and role-based properties.
 
-#### 4. Build support files
+##### 4. Build support files
 
 AutoFV also generates supporting files for formal execution:
 
@@ -33,7 +33,7 @@ AutoFV also generates supporting files for formal execution:
 - `analyze.flist`
 - `jg_fpv.tcl`
 
-#### 5. Logging
+##### 5. Logging
 
 The script writes log output to `autofv.log` and also prints the same messages in the terminal.
 

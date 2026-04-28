@@ -40,7 +40,7 @@ AutoFV Generator eliminates this repetitive setup by automatically generating a 
 
 ## Quick Start
 
-#### Generate a framework
+##### Generate a framework
 
 ```bash
 python autofv.py -d ./rtl -o ./formal
@@ -50,7 +50,7 @@ python autofv.py -d ./rtl -o ./formal
 - `-d, --directory`: Specifies the path to RTL source files. Accepts either a directory containing multiple RTL files or a single RTL file path for targeted verification.
 - `-o, --output`: Specifies the output directory where the generated FPV framework and all supporting files will be created.
 
-#### Run formal verification
+##### Run formal verification
 
 ```bash
 cd formal

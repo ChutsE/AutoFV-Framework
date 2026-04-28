@@ -17,19 +17,19 @@ For GUI mode, make sure `tkinter` is available in your Python installation.
 
 Use CLI mode when you want automation or script-based execution, this is recommend on Linux enviroment.
 
-#### Generate from a single RTL file
+##### Generate from a single RTL file
 
 ```bash
 python autofv.py -f ./rtl/design.sv -o ./formal
 ```
 
-#### Generate from an RTL directory
+##### Generate from an RTL directory
 
 ```bash
 python autofv.py -d ./rtl -o ./formal
 ```
 
-#### CLI arguments
+##### CLI arguments
 
 - `-f, --file`: Path to one RTL file (`.sv` or `.v`)
 - `-d, --directory`: Path to a directory with RTL files
@@ -46,7 +46,7 @@ python autofv.py
 
 If the GUI does not start, verify that `tkinter` is installed and available in your active Python environment.
 
-#### GUI example
+##### GUI example
 
 ![AutoFV GUI example](img/gui.png)
 

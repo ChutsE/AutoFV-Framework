@@ -78,22 +78,22 @@ This supports **assume‑guarantee reasoning** and avoids property duplication.
 
 ## Usage Examples
 
-### AST Example
+##### AST Example
 ```systemverilog
 `AST(rca, valid_output, (req == 1'b1), (ack == 1'b1))
 ```
 
-### ASM Example
+##### ASM Example
 ```systemverilog
 `ASM(rca, input_stable, (clk == 1'b1), (data_in == $past(data_in)))
 ```
 
-### COV Example
+##### COV Example
 ```systemverilog
 `COV(rca, reset_triggered, (arst_n == 1'b0), (state == IDLE))
 ```
 
-### ROLE Example
+##### ROLE Example
 ```systemverilog
 `ROLE(1'b0, rca, handshake, (req == 1'b1), (ack == 1'b1))
 ```

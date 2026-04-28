@@ -3,8 +3,9 @@ site_name: AutoFV_Framework
 nav:
   - Home: index.md
   - Generate a Framework: GenerateFramework.md
+  - Generated Files: GeneratedFiles.md
   - Run Formal: RunFormal.md
-  - Property Macros: PropertyMacros.md
+  - Property Macros Usage: PropertyMacros.md
   - Software Architecture: SoftwareArchitecture.md
   - Contributing: Contributing.md
   - FAQ: FAQ.md
