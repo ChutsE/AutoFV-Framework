@@ -5,8 +5,10 @@ nav:
   - Generate a Framework: GenerateFramework.md
   - Run Formal: RunFormal.md
   - Property Macros: PropertyMacros.md
-  - FAQ: FAQ.md
+  - Software Architecture: SoftwareArchitecture.md
   - Contributing: Contributing.md
+  - FAQ: FAQ.md
+
 
 theme:
   name: readthedocs
