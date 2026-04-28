@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Software Architecture - AutoFV_Framework</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Software Architecture";
+        var mkdocs_page_input_path = "SoftwareArchitecture.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> AutoFV_Framework
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../GenerateFramework/">Generate a Framework</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../RunFormal/">Run Formal</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../PropertyMacros/">Property Macros</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Software Architecture</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#main-components">Main Components</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-input-handling">1. Input handling</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-framework-generation">2. Framework generation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-property-macros">3. Property macros</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-build-support-files">4. Build support files</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-logging">5. Logging</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#execution-flow">Execution Flow</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#output-structure">Output Structure</a>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Contributing/">Contributing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../FAQ/">FAQ</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">AutoFV_Framework</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Software Architecture</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="software-architecture">Software Architecture</h1>
+<p>This page summarizes the structure of <code>autofv.py</code> and the main parts of the AutoFV flow.</p>
+<h2 id="overview">Overview</h2>
+<p>AutoFV is a single Python script that reads RTL files and generates a formal verification framework. The script supports two entry modes:</p>
+<ul>
+<li>CLI mode for automated execution</li>
+<li>GUI mode for interactive use</li>
+</ul>
+<p>Both modes share the same generation pipeline and produce the same set of output files.</p>
+<h2 id="main-components">Main Components</h2>
+<h4 id="1-input-handling">1. Input handling</h4>
+<p>The script accepts either a single RTL file or a directory of RTL files. It filters files with <code>.v</code> and <code>.sv</code> extensions and loads their contents into memory.</p>
+<h4 id="2-framework-generation">2. Framework generation</h4>
+<p>For each RTL source, AutoFV generates formal verification wrapper modules. These wrappers are built from the original module structure and are prepared for binding into the design.</p>
+<h4 id="3-property-macros">3. Property macros</h4>
+<p>The script creates a shared header file with SystemVerilog macros for assertions, assumptions, coverage, and role-based properties.</p>
+<h4 id="4-build-support-files">4. Build support files</h4>
+<p>AutoFV also generates supporting files for formal execution:</p>
+<ul>
+<li><code>Makefile</code></li>
+<li><code>analyze.flist</code></li>
+<li><code>jg_fpv.tcl</code></li>
+</ul>
+<h4 id="5-logging">5. Logging</h4>
+<p>The script writes log output to <code>autofv.log</code> and also prints the same messages in the terminal.</p>
+<h2 id="execution-flow">Execution Flow</h2>
+<ol>
+<li>The user launches the script in CLI or GUI mode.</li>
+<li>RTL files are collected and read.</li>
+<li>Wrapper modules and support files are generated.</li>
+<li>The output directory is populated with the formal verification framework.</li>
+<li>The generated files are used to run formal verification on the selected module.</li>
+</ol>
+<h2 id="output-structure">Output Structure</h2>
+<p>The generated framework typically includes:</p>
+<ul>
+<li>wrapper modules for each RTL file</li>
+<li>macro definitions</li>
+<li>a file list for analysis</li>
+<li>a Makefile with one target per module</li>
+<li>a TCL script for formal setup</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../PropertyMacros/" class="btn btn-neutral float-left" title="Property Macros"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Contributing/" class="btn btn-neutral float-right" title="Contributing">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../PropertyMacros/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Contributing/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

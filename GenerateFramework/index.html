@@ -54,8 +54,6 @@
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#generate-from-an-rtl-directory">Generate from an RTL directory</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#generate-recursively-from-subdirectories">Generate recursively from subdirectories</a>
-    </li>
     <li class="toctree-l3"><a class="reference internal" href="#cli-arguments">CLI arguments</a>
     </li>
         </ul>
@@ -65,6 +63,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#gui-example">GUI example</a>
     </li>
         </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#logger">Logger</a>
     </li>
     </ul>
                 </li>
@@ -78,11 +78,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../FAQ/">FAQ</a>
+                <li class="toctree-l1"><a class="reference internal" href="../SoftwareArchitecture/">Software Architecture</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../Contributing/">Contributing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../FAQ/">FAQ</a>
                 </li>
               </ul>
       </div>
@@ -110,7 +114,7 @@
               
                 <h1 id="generate-a-framework">Generate a Framework</h1>
 <p>This page explains how to generate the FPV framework using both command-line and GUI modes.</p>
-<h2 id="prerequisites">Prerequisites</h2>
+<h3 id="prerequisites">Prerequisites</h3>
 <ul>
 <li>Python 3.9 or newer</li>
 <li>AutoFV dependencies:</li>
@@ -119,30 +123,30 @@
 </code></pre>
 <p>For GUI mode, make sure <code>tkinter</code> is available in your Python installation.</p>
 <h2 id="cli-execution">CLI Execution</h2>
-<p>Use CLI mode when you want automation or script-based execution.</p>
-<h3 id="generate-from-a-single-rtl-file">Generate from a single RTL file</h3>
-<pre><code class="language-bash">python autofv.py -f ./rtl/design.sv -o ./out
+<p>Use CLI mode when you want automation or script-based execution, this is recommend on Linux enviroment.</p>
+<h4 id="generate-from-a-single-rtl-file">Generate from a single RTL file</h4>
+<pre><code class="language-bash">python autofv.py -f ./rtl/design.sv -o ./formal
 </code></pre>
-<h3 id="generate-from-an-rtl-directory">Generate from an RTL directory</h3>
-<pre><code class="language-bash">python autofv.py -d ./rtl -o ./out
+<h4 id="generate-from-an-rtl-directory">Generate from an RTL directory</h4>
+<pre><code class="language-bash">python autofv.py -d ./rtl -o ./formal
 </code></pre>
-<h3 id="generate-recursively-from-subdirectories">Generate recursively from subdirectories</h3>
-<pre><code class="language-bash">python autofv.py -d ./rtl -o ./out -r
-</code></pre>
-<h3 id="cli-arguments">CLI arguments</h3>
+<h4 id="cli-arguments">CLI arguments</h4>
 <ul>
 <li><code>-f, --file</code>: Path to one RTL file (<code>.sv</code> or <code>.v</code>)</li>
 <li><code>-d, --directory</code>: Path to a directory with RTL files</li>
 <li><code>-o, --output</code>: Output directory where the framework is generated</li>
-<li><code>-r, --recursive</code>: Search RTL files recursively in subdirectories (beta)</li>
+<li><code>-r, --recursive</code>: Search RTL files recursively in subdirectories (BETA)</li>
 </ul>
 <h2 id="gui-execution">GUI Execution</h2>
-<p>GUI mode starts when you run the tool without CLI arguments. This mode is recommend for academic purposes.</p>
+<p>GUI mode starts when you run the tool without CLI arguments. This mode is recommend for academic purposes and for Windows OS enviroment.</p>
 <pre><code class="language-bash">python autofv.py
 </code></pre>
 <p>If the GUI does not start, verify that <code>tkinter</code> is installed and available in your active Python environment.</p>
-<h3 id="gui-example">GUI example</h3>
+<h4 id="gui-example">GUI example</h4>
 <p><img alt="AutoFV GUI example" src="../img/gui.png" /></p>
+<h2 id="logger">Logger</h2>
+<p>The log file is generated in the same directory where you execute the <code>autofv.py</code> command. </p>
+<p>Log file: <code>autofv.log</code></p>
               
             </div>
           </div><footer>

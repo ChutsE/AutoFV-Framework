@@ -64,11 +64,15 @@
                 </li>
               </ul>
               <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../FAQ/">FAQ</a>
+                <li class="toctree-l1"><a class="reference internal" href="../SoftwareArchitecture/">Software Architecture</a>
                 </li>
               </ul>
               <ul>
                 <li class="toctree-l1"><a class="reference internal" href="../Contributing/">Contributing</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../FAQ/">FAQ</a>
                 </li>
               </ul>
       </div>
@@ -98,9 +102,9 @@
 <p>After generating the framework, run formal verification from the generated output folder.</p>
 <h2 id="recommended-working-directory">Recommended working directory</h2>
 <p>Move into the generated framework directory before running Makefile targets.</p>
-<pre><code class="language-bash">cd ./out
+<pre><code class="language-bash">cd ./formal
 </code></pre>
-<p>If you used another output path, replace <code>./out</code> with your selected output directory.</p>
+<p>If you used another output path, replace <code>./formal</code> with your selected output directory.</p>
 <h2 id="run-makefile-commands">Run Makefile commands</h2>
 <p>The generated Makefile creates one target per module using this format:</p>
 <pre><code class="language-text">&lt;module&gt;_top
