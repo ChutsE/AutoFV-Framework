@@ -76,24 +76,51 @@ This supports **assume‑guarantee reasoning** and avoids property duplication.
 
 ---
 
-## Usage Examples
+## Overlapped and Non-overlapped Implication
+
+SystemVerilog Assertions use implication operators to relate a `precond` to a `consq`. The two most common forms are:
+
+- **Overlapped implication** (`|->`): the consequence is checked in the **same cycle** where the precondition is true.
+- **Non-overlapped implication** (`|=>`): the consequence is checked in the **next cycle** after the precondition is true.
+
+##### When to use each one
+
+- Use `|->` when the response must happen immediately or in the same sampling event.
+- Use `|=>` when the response is expected one clock later, after the design has had time to react.
+- Use `##N` when you need to model extra latency and check the consequence several cycles later.
+
+##### Example comparison
+
+```systemverilog
+// Overlapped implication: check the consequence in the same cycle
+`AST(rca, same_cycle_ack, (req == 1'b1) |->, (ack == 1'b1))
+
+// Non-overlapped implication: check the consequence in the next cycle
+`AST(rca, next_cycle_ack, (req == 1'b1) |=>, (ack == 1'b1))
+```
+
+The choice between these operators changes the temporal meaning of a property, so it is important to match the operator with the intended hardware behavior.
+
+When more than one cycle of delay is needed, `##` can be combined with implication-based properties to express the exact latency, for example `req |=> ##2 ack` or `req |-> ##3 ack`, depending on whether the first check is aligned with the same cycle or the next one.
+
+## Macros Usage Examples
 
 ##### AST Example
 ```systemverilog
-`AST(rca, valid_output, (req == 1'b1), (ack == 1'b1))
+`AST(rca, valid_output, (req == 1'b1) |->, (ack == 1'b1))
 ```
 
 ##### ASM Example
 ```systemverilog
-`ASM(rca, input_stable, (clk == 1'b1), (data_in == $past(data_in)))
+`ASM(rca, input_stable, (clk == 1'b1) |=>, (data_in == $past(data_in)))
 ```
 
 ##### COV Example
 ```systemverilog
-`COV(rca, reset_triggered, (arst_n == 1'b0), (state == IDLE))
+`COV(rca, reset_triggered, (arst_n == 1'b0) |-> ##2, (state == IDLE))
 ```
 
 ##### ROLE Example
 ```systemverilog
-`ROLE(1'b0, rca, handshake, (req == 1'b1), (ack == 1'b1))
+`ROLE(1'b0, rca, handshake, (req == 1'b1) |=> , (ack == 1'b1))
 ```
