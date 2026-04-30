@@ -32,7 +32,7 @@ module fv_alu (
 input [7:0] A,
 input [7:0] B,
 input [2:0] op,
-output [7:0] result
+input [7:0] result
 );
   `ifdef ALU_TOP 
     `define ALU_ASM 1
@@ -48,9 +48,12 @@ bind alu fv_alu fv_alu_i(.*);
 ```
 
 The wrapper module:
-- Mirrors the ports of the original module
-- Includes a `bind` statement to attach to the design
-- Provides conditional defines for verification context
+
+- Mirrors the ports of the original module 
+
+- Includes a `bind` statement to attach to the design 
+
+- Provides conditional define `<MODULE>_ASM` for role verification context
 
 ---
 
@@ -76,7 +79,7 @@ The wrapper module:
   end
 ```
 
-These macros provide a standardized way to write verification properties across the framework.
+These macros provide a standardized way to write verification properties across the framework, if want to know more about the usage, see Property Macros Usage Section for more info.
 
 ---
 
@@ -92,6 +95,7 @@ memory_top:
 	jg jg_fpv.tcl -allow_unsupported_OS -define MEMORY_TOP 1&
 
 ```
+In a Makefile, the text before `:` defines the target (the execution key), and the text after `:` specifies the dependencies and the commands that will be executed when that target is invoked.
 
 Each target corresponds to one module. Run formal verification with:
 
@@ -106,11 +110,6 @@ make alu_top
 **File**: `analyze.flist`
 
 ```
-+incdir+.
-
-# Definitions for RTL configurations
-   # Add here your `define statements for RTL configurations
-
 # Formal properies macros
 ./property_defines.svh
 
@@ -123,7 +122,9 @@ make alu_top
 ./fv_memory.sv
 ```
 
-This file tells the formal tool which files to compile and analyze.
+This section lists all dependent scripts required for compilation.
+Including these files ensures that both the RTL and formal verification sources are compiled correctly and in the proper order, with all required references resolved.
+
 
 ---
 
@@ -133,8 +134,6 @@ This file tells the formal tool which files to compile and analyze.
 
 ```tcl
 clear -all
-
-set_proofgrid_bridge off
 
 set fv_analyze_options { -sv12 }
 set design_top shifting_cell
@@ -161,7 +160,7 @@ set_engineJ_max_trace_length 2000
 prove -all
 ```
 
-This script configures and runs the formal verification engine.
+This document describes how the formal verification engine is configured, initialized, and executed. It outlines the key parameters, required inputs, and runtime behavior used to validate the system and report verification results.
 
 ---
 
