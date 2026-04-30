@@ -68,7 +68,15 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#role-contextdependent-property-role">ROLE — Context‑Dependent Property Role</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#usage-examples">Usage Examples</a>
+    <li class="toctree-l2"><a class="reference internal" href="#overlapped-and-non-overlapped-implication">Overlapped and Non-overlapped Implication</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#when-to-use-each-one">When to use each one</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-comparison">Example comparison</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#macros-usage-examples">Macros Usage Examples</a>
         <ul>
     <li class="toctree-l3"><a class="reference internal" href="#ast-example">AST Example</a>
     </li>
@@ -192,18 +200,39 @@
 </ul>
 <p>This supports <strong>assume‑guarantee reasoning</strong> and avoids property duplication.</p>
 <hr />
-<h2 id="usage-examples">Usage Examples</h2>
+<h2 id="overlapped-and-non-overlapped-implication">Overlapped and Non-overlapped Implication</h2>
+<p>SystemVerilog Assertions use implication operators to relate a <code>precond</code> to a <code>consq</code>. The two most common forms are:</p>
+<ul>
+<li><strong>Overlapped implication</strong> (<code>|-&gt;</code>): the consequence is checked in the <strong>same cycle</strong> where the precondition is true.</li>
+<li><strong>Non-overlapped implication</strong> (<code>|=&gt;</code>): the consequence is checked in the <strong>next cycle</strong> after the precondition is true.</li>
+</ul>
+<h5 id="when-to-use-each-one">When to use each one</h5>
+<ul>
+<li>Use <code>|-&gt;</code> when the response must happen immediately or in the same sampling event.</li>
+<li>Use <code>|=&gt;</code> when the response is expected one clock later, after the design has had time to react.</li>
+<li>Use <code>##N</code> when you need to model extra latency and check the consequence several cycles later.</li>
+</ul>
+<h5 id="example-comparison">Example comparison</h5>
+<pre><code class="language-systemverilog">// Overlapped implication: check the consequence in the same cycle
+`AST(rca, same_cycle_ack, (req == 1'b1) |-&gt;, (ack == 1'b1))
+
+// Non-overlapped implication: check the consequence in the next cycle
+`AST(rca, next_cycle_ack, (req == 1'b1) |=&gt;, (ack == 1'b1))
+</code></pre>
+<p>The choice between these operators changes the temporal meaning of a property, so it is important to match the operator with the intended hardware behavior.</p>
+<p>When more than one cycle of delay is needed, <code>##</code> can be combined with implication-based properties to express the exact latency, for example <code>req |=&gt; ##2 ack</code> or <code>req |-&gt; ##3 ack</code>, depending on whether the first check is aligned with the same cycle or the next one.</p>
+<h2 id="macros-usage-examples">Macros Usage Examples</h2>
 <h5 id="ast-example">AST Example</h5>
-<pre><code class="language-systemverilog">`AST(rca, valid_output, (req == 1'b1), (ack == 1'b1))
+<pre><code class="language-systemverilog">`AST(rca, valid_output, (req == 1'b1) |-&gt;, (ack == 1'b1))
 </code></pre>
 <h5 id="asm-example">ASM Example</h5>
-<pre><code class="language-systemverilog">`ASM(rca, input_stable, (clk == 1'b1), (data_in == $past(data_in)))
+<pre><code class="language-systemverilog">`ASM(rca, input_stable, (clk == 1'b1) |=&gt;, (data_in == $past(data_in)))
 </code></pre>
 <h5 id="cov-example">COV Example</h5>
-<pre><code class="language-systemverilog">`COV(rca, reset_triggered, (arst_n == 1'b0), (state == IDLE))
+<pre><code class="language-systemverilog">`COV(rca, reset_triggered, (arst_n == 1'b0) |-&gt; ##2, (state == IDLE))
 </code></pre>
 <h5 id="role-example">ROLE Example</h5>
-<pre><code class="language-systemverilog">`ROLE(1'b0, rca, handshake, (req == 1'b1), (ack == 1'b1))
+<pre><code class="language-systemverilog">`ROLE(1'b0, rca, handshake, (req == 1'b1) |=&gt; , (ack == 1'b1))
 </code></pre>
               
             </div>
