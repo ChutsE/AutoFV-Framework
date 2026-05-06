@@ -4,8 +4,20 @@ This page explains how to generate the FPV framework using both command-line and
 
 ### Prerequisites
 
-- Python 3.9 or newer
-- AutoFV dependencies:
+- Python 3.9 or newer, link for download https://www.python.org/downloads/
+- Create a Python virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+- Activate the environment:
+
+```bash
+.venv\Scripts\activate
+```
+
+- Install AutoFV dependencies:
 
 ```bash
 pip install -r requirements.txt
