@@ -115,6 +115,9 @@ Example concept:
 
 This mechanism supports **assume-guarantee verification** and avoids duplicating property specifications across verification levels.
 
+<img width="1672" height="941" alt="role_mechanisms" src="https://github.com/user-attachments/assets/dddc4b27-9348-4a3a-84a5-471c0bfa2657" />
+
+
 ---
 
 ## C. Makefile
