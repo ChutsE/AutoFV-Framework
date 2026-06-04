@@ -74,6 +74,9 @@ The `ROLE` macro enables **intent‑preserving property role across hierarchical
 This supports **assume‑guarantee reasoning** and avoids property duplication.
 
 
+![Role Mechanisms](img/role_mechanisms.png)
+
+
 ---
 
 ## Overlapped and Non-overlapped Implication
